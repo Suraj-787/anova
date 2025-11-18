@@ -88,11 +88,6 @@ const PAGE_TOPICS = [
     title: 'ANOVA Notation',
     description: 'Data structure, notation, and calculations',
   },
-  {
-    page: 17,
-    title: 'Sum of Squares',
-    description: 'Partitioning total variation: SST = SSB + SSW',
-  },
 ]
 
 export const Page18Summary = () => {
@@ -105,7 +100,7 @@ export const Page18Summary = () => {
     large: 'text-lg',
   }[accessibility.textSize]
 
-  const completionPercent = ((currentPage - 1) / 18) * 100
+  const completionPercent = ((currentPage) / 17) * 100
 
   const handleTopicClick = (page: number) => {
     setCurrentPage(page)
@@ -138,7 +133,7 @@ export const Page18Summary = () => {
             <h2 className="font-serif font-bold text-burgundy mb-4">Your Progress</h2>
             <div className="mb-4">
               <div className="flex justify-between mb-2">
-                <span className="font-serif text-foreground">{currentPage} / 18 pages completed</span>
+                <span className="font-serif text-foreground">{currentPage} / 17 pages completed</span>
                 <span className="font-serif font-bold text-burgundy">{completionPercent.toFixed(0)}%</span>
               </div>
               <div className="w-full h-3 bg-border rounded-full overflow-hidden">
