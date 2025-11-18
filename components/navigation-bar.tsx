@@ -43,6 +43,34 @@ export const NavigationBar = () => {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Only handle arrow keys if no input elements are focused
+      const activeElement = document.activeElement
+      if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA' || activeElement.tagName === 'SELECT')) {
+        return
+      }
+
+      switch (event.key) {
+        case 'ArrowLeft':
+          event.preventDefault()
+          if (currentPage > 1) {
+            setCurrentPage(currentPage - 1)
+          }
+          break
+        case 'ArrowRight':
+          event.preventDefault()
+          if (currentPage < 17) {
+            setCurrentPage(currentPage + 1)
+          }
+          break
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [currentPage, setCurrentPage])
+
   const handlePageChange = (delta: number) => {
     setCurrentPage(currentPage + delta)
   }

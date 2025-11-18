@@ -103,7 +103,7 @@ export const Page13ANOVAHypotheses = () => {
               <div className="space-y-2 h-32 flex flex-col justify-end">
                 {means.map((_, idx) => (
                   <div key={idx} className="flex items-center gap-2">
-                    <span className="font-serif text-sm text-muted-foreground">Group {idx + 1}:</span>
+                    <span className="font-serif text-xs text-muted-foreground whitespace-nowrap min-w-12">G{idx + 1}:</span>
                     <div className="w-full h-6 bg-primary rounded flex items-center justify-center">
                       <div className="h-3 w-3 bg-primary-foreground rounded-full" />
                     </div>
@@ -120,7 +120,7 @@ export const Page13ANOVAHypotheses = () => {
               <div className="space-y-2 h-32 flex flex-col justify-end">
                 {means.map((mean, idx) => (
                   <div key={idx} className="flex items-center gap-2">
-                    <span className="font-serif text-sm text-muted-foreground">Group {idx + 1}:</span>
+                    <span className="font-serif text-xs text-muted-foreground whitespace-nowrap min-w-12">G{idx + 1}:</span>
                     <div
                       className="h-6 bg-accent rounded flex items-center justify-center"
                       style={{ width: `${30 + idx * 15}%` }}

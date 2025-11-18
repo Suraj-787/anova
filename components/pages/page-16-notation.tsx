@@ -10,20 +10,20 @@ export const Page16Notation = () => {
   const { accessibility, anovaData, updateAnovaData } = useAnova()
   const [editingCell, setEditingCell] = useState<{ row: number; col: number } | null>(null)
   const [tempValue, setTempValue] = useState('')
+  
+  // Sample data - using state so changes trigger re-renders
+  const [data, setData] = useState([
+    [42, 48, 55],
+    [45, 51, 58],
+    [48, 52, 60],
+    [46, 50, 56],
+  ])
 
   const textSizeClass = {
     small: 'text-sm',
     medium: 'text-base',
     large: 'text-lg',
   }[accessibility.textSize]
-
-  // Sample data
-  const data = [
-    [42, 48, 55],
-    [45, 51, 58],
-    [48, 52, 60],
-    [46, 50, 56],
-  ]
 
   const calculateStats = () => {
     const k = data[0].length
@@ -47,7 +47,9 @@ export const Page16Notation = () => {
 
   const saveCellEdit = () => {
     if (editingCell && !isNaN(Number(tempValue))) {
-      data[editingCell.row][editingCell.col] = Number(tempValue)
+      const newData = [...data]
+      newData[editingCell.row][editingCell.col] = Number(tempValue)
+      setData(newData)
       setEditingCell(null)
     }
   }
@@ -92,7 +94,10 @@ export const Page16Notation = () => {
                               onBlur={saveCellEdit}
                               onKeyDown={(e) => e.key === 'Enter' && saveCellEdit()}
                               autoFocus
-                              className="w-12 text-center border border-burgundy rounded px-1"
+                              className="w-16 text-center border border-burgundy rounded px-1"
+                              min="0"
+                              max="100"
+                              step="1"
                             />
                           ) : (
                             val
@@ -118,7 +123,7 @@ export const Page16Notation = () => {
                 {stats.groupMeans.map((mean, idx) => (
                   <div key={idx} className="flex justify-between p-2 bg-cream rounded">
                     <span className="font-serif font-semibold text-burgundy">ȳ{idx + 1}. =</span>
-                    <span className="font-serif font-mono text-dark-brown">{mean.toFixed(2)}</span>
+                    <span className="font-mono text-dark-brown">{mean.toFixed(2)}</span>
                   </div>
                 ))}
               </div>
@@ -132,15 +137,15 @@ export const Page16Notation = () => {
               <div className="space-y-2">
                 <div className="flex justify-between p-2 bg-cream rounded">
                   <span className="font-serif font-semibold text-burgundy">k =</span>
-                  <span className="font-serif font-mono text-dark-brown">{stats.k}</span>
+                  <span className="font-mono text-dark-brown">{stats.k}</span>
                 </div>
                 <div className="flex justify-between p-2 bg-cream rounded">
                   <span className="font-serif font-semibold text-burgundy">n =</span>
-                  <span className="font-serif font-mono text-dark-brown">{stats.n}</span>
+                  <span className="font-mono text-dark-brown">{stats.n}</span>
                 </div>
                 <div className="flex justify-between p-2 bg-cream rounded">
                   <span className="font-serif font-semibold text-burgundy">ȳ.. =</span>
-                  <span className="font-serif font-mono text-dark-brown">{stats.overallMean.toFixed(2)}</span>
+                  <span className="font-mono text-dark-brown">{stats.overallMean.toFixed(2)}</span>
                 </div>
               </div>
             </Card>

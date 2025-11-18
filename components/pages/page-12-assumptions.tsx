@@ -135,13 +135,24 @@ export const Page12Assumptions = () => {
                 <Card className="border-2 border-accent p-4 bg-background">
                   <h3 className="font-serif font-bold text-burgundy mb-3 text-sm">Individual Values</h3>
                   <ResponsiveContainer width="100%" height={250}>
-                    <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+                    <ScatterChart data={[...scatterData1, ...scatterData2]} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#d2b48c" />
                       <XAxis dataKey="x" type="number" stroke="#292524" />
-                      <YAxis type="number" stroke="#292524" />
-                      <Tooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ backgroundColor: '#fffbeb', border: '2px solid #991b1b' }} />
-                      <Scatter data={scatterData1} fill="#991b1b" />
-                      <Scatter data={scatterData2} fill="#f59e0b" />
+                      <YAxis dataKey="y" type="number" stroke="#292524" />
+                      <Tooltip 
+                        cursor={{ strokeDasharray: '3 3' }} 
+                        contentStyle={{ backgroundColor: '#fffbeb', border: '2px solid #991b1b' }}
+                        formatter={(value, name) => [`${value.toFixed(2)}`, `Group ${scatterData1.some(d => d.y === value) ? '1' : '2'}`]}
+                      />
+                      <Scatter 
+                        dataKey="y" 
+                        fill="#991b1b"
+                        shape={(props) => {
+                          const { cx, cy, payload } = props;
+                          const color = payload.group === 1 ? "#991b1b" : "#f59e0b";
+                          return <circle cx={cx} cy={cy} r={3} fill={color} />;
+                        }}
+                      />
                     </ScatterChart>
                   </ResponsiveContainer>
                 </Card>
