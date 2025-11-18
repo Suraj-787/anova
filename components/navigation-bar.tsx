@@ -26,7 +26,6 @@ const PAGE_TITLES = [
   'Figure 7.1 - Significantly Different',
   'Figure 7.2 - Equal Means',
   'ANOVA Notation',
-  'Sum of Squares Total',
   'Summary & Navigation',
 ]
 
@@ -54,12 +53,12 @@ export const NavigationBar = () => {
         <div className="max-w-7xl mx-auto px-3 md:px-4 py-3">
           <div className="flex items-center justify-between gap-2 md:gap-4 flex-wrap">
             {/* Progress indicator */}
-            <div className="flex items-center gap-2 text-sm text-muted-foreground order-1 md:order-none">
-              <span className="font-serif font-semibold hidden sm:inline">{currentPage} / 18</span>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground order-1 md:order-0">
+              <span className="font-serif font-semibold hidden sm:inline">{currentPage} / 17</span>
               <div className="w-16 md:w-24 h-2 bg-border rounded-full overflow-hidden">
                 <div
                   className="h-full bg-accent transition-all duration-300"
-                  style={{ width: `${(currentPage / 18) * 100}%` }}
+                  style={{ width: `${(currentPage / 17) * 100}%` }}
                 />
               </div>
             </div>
@@ -79,7 +78,7 @@ export const NavigationBar = () => {
                 size="sm"
                 variant="outline"
                 onClick={() => handlePageChange(1)}
-                disabled={currentPage === 18}
+                disabled={currentPage === 17}
                 className="font-serif text-xs"
               >
                 Next →

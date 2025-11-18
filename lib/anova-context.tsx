@@ -122,7 +122,7 @@ export const AnovaProvider = ({ children }: { children: React.ReactNode }) => {
   }, [])
 
   const setCurrentPage = useCallback((page: number) => {
-    setCurrentPageState(Math.max(1, Math.min(18, page)))
+    setCurrentPageState(Math.max(1, Math.min(17, page)))
   }, [])
 
   const resetAll = useCallback(() => {

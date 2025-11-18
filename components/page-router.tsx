@@ -18,7 +18,6 @@ import { Page13ANOVAHypotheses } from '@/components/pages/page-13-hypotheses'
 import { Page14Figure71 } from '@/components/pages/page-14-figure-7-1'
 import { Page15Figure72 } from '@/components/pages/page-15-figure-7-2'
 import { Page16Notation } from '@/components/pages/page-16-notation'
-import { Page17SumOfSquares } from '@/components/pages/page-17-sum-squares'
 import { Page18Summary } from '@/components/pages/page-18-summary'
 
 const PAGES = [
@@ -38,7 +37,6 @@ const PAGES = [
   Page14Figure71,
   Page15Figure72,
   Page16Notation,
-  Page17SumOfSquares,
   Page18Summary,
 ]
 
