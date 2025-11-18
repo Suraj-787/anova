@@ -8,12 +8,12 @@ export const Page1TitlePage = () => {
   const [showQuote, setShowQuote] = useState(false)
   const [displayedQuote, setDisplayedQuote] = useState('')
   
-  const fisher_quote = '"To call in the statistician after the experiment is done may be no more than asking him to perform a post-mortem examination." — Ronald Fisher'
+  const anova_quote = '"Analysis of variance is not a mathematical theorem, but rather a convenient method of arranging the arithmetic." — Ronald Fisher'
 
   useEffect(() => {
     if (animationControls.skipAnimations) {
       setShowQuote(true)
-      setDisplayedQuote(fisher_quote)
+      setDisplayedQuote(anova_quote)
       return
     }
 
@@ -31,9 +31,9 @@ export const Page1TitlePage = () => {
 
     let index = 0
     const interval = setInterval(() => {
-      setDisplayedQuote(fisher_quote.slice(0, index))
+      setDisplayedQuote(anova_quote.slice(0, index))
       index++
-      if (index > fisher_quote.length) clearInterval(interval)
+      if (index > anova_quote.length) clearInterval(interval)
     }, 30 / animationControls.speed)
 
     return () => clearInterval(interval)
@@ -59,7 +59,7 @@ export const Page1TitlePage = () => {
           className={`text-center max-w-2xl mb-20 italic text-lg md:text-xl text-dark-brown animate-fadeIn ${reduceMotionClass} ${textSizeClass}`}
         >
           {displayedQuote}
-          {displayedQuote.length < fisher_quote.length && <span className="animate-glow">|</span>}
+          {displayedQuote.length < anova_quote.length && <span className="animate-glow">|</span>}
         </blockquote>
       )}
 
